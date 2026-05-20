@@ -1,0 +1,42 @@
+<section id="faq" class="max-w-[800px] mx-auto px-margin py-xl animate-on-scroll is-visible">
+  <div class="text-center mb-xl">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Preguntas Frecuentes</h2>
+  </div>
+  <div class="flex flex-col gap-sm">
+    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(0)">
+      <div class="flex justify-between items-center">
+        <h3 class="font-body-lg text-on-surface font-bold">¿Cómo funciona la IA de SmartDesk?</h3>
+        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 0"></svg>
+      </div>
+      @if (openIndex === 0) {
+      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
+        Nuestra IA analiza el lenguaje natural de cada ticket para determinar la urgencia y el departamento adecuado en tiempo real.
+      </div>
+      }
+    </div>
+    
+    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(1)">
+      <div class="flex justify-between items-center">
+        <h3 class="font-body-lg text-on-surface font-bold">¿SmartDesk es multiempresa?</h3>
+        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 1"></svg>
+      </div>
+      @if (openIndex === 1) {
+      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
+        Sí, puedes gestionar múltiples departamentos, sucursales u organizaciones bajo un mismo panel administrativo.
+      </div>
+      }
+    </div>
+    
+    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(2)">
+      <div class="flex justify-between items-center">
+        <h3 class="font-body-lg text-on-surface font-bold">¿Puedo personalizar áreas?</h3>
+        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 2"></svg>
+      </div>
+      @if (openIndex === 2) {
+      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
+        Totalmente. Puedes definir roles, permisos y flujos personalizados según el tipo de ticket o la especialidad de tus agentes.
+      </div>
+      }
+    </div>
+  </div>
+</section>

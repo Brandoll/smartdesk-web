@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartDesk - Automatiza el soporte interno con IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#edeeef",
+                        "on-surface": "#191c1d",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#e2e2e5",
+                        "on-secondary-container": "#636467",
+                        "tertiary-fixed-dim": "#c0c7cf",
+                        "tertiary": "#424950",
+                        "on-surface-variant": "#5b403d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed": "#151c22",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#8f6f6c",
+                        "tertiary-fixed": "#dce3ec",
+                        "secondary": "#5d5e61",
+                        "tertiary-container": "#5a6168",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed": "#e2e2e5",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary": "#97000c",
+                        "background": "#f8f9fa",
+                        "primary-container": "#bd1e1e",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#ba1b1c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#d5dce5",
+                        "on-secondary-fixed-variant": "#454749",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-container": "#ffd2cc",
+                        "on-tertiary-fixed-variant": "#41484e",
+                        "outline-variant": "#e4beb9",
+                        "on-secondary-fixed": "#1a1c1e",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary-fixed-variant": "#93000b",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "surface": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdad6",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-background text-primary dark:text-primary-fixed font-body-md text-body-md w-full top-0 sticky border-b border-surface-variant flat no shadows z-50">
+<div class="flex justify-between items-center px-margin py-base max-w-[1200px] mx-auto w-full">
+<div class="flex items-center gap-sm">
+<img alt="SmartDesk Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArNB7bquVPrJ4eI3TvbuaKekE__aGE_DoiCri6e__Zreg5konNIiiIfp4eY6RHRWwAWSLb3BVctUmu_U7C6T_FUpZqC0NWTxLJSuxwPuR1ilFtlHp7TVCJkno4CKw_hxselbSOTgCw6m-n5YX8UiTOd4VHfscCsg1lNyK0Pm-JG0IaA9v-4n_vs6xyyTp3_0M0lLGMpEuSQ-dsY_Xm_Lx_2w9DL_Hi4h2ENxCKPu_Sa9XPy6TLqUmU4UqMoWqJMxfk0fdmW7mWzgA"/>
+<span class="font-headline-md text-headline-md font-bold text-primary">SmartDesk</span>
+</div>
+<div class="hidden md:flex gap-gutter">
+<a class="text-secondary hover:text-primary transition-colors" href="#">Funcionalidades</a>
+<a class="text-secondary hover:text-primary transition-colors" href="#">Precios</a>
+<a class="text-secondary hover:text-primary transition-colors" href="#">Sobre nosotros</a>
+</div>
+<div class="flex gap-sm items-center">
+<a class="hidden md:inline-block font-label-md text-label-md text-secondary hover:text-primary transition-colors px-sm py-base" href="#">Iniciar sesión</a>
+<a class="bg-primary-container text-on-primary font-label-md text-label-md px-md py-sm rounded hover:bg-primary transition-colors" href="#">Empezar</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="max-w-[1200px] mx-auto px-margin py-xl lg:py-[120px] grid md:grid-cols-2 gap-xl items-center animate-on-scroll is-visible">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-md">Automatiza el soporte interno con Inteligencia Artificial</h1>
+<p class="font-body-lg text-body-lg text-secondary mb-lg max-w-lg">SmartDesk clasifica, prioriza y deriva tickets automáticamente usando IA, permitiendo a tu equipo enfocarse en lo que realmente importa.</p>
+<div class="flex flex-wrap gap-sm">
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-md py-sm rounded hover:bg-primary transition-colors">Empezar</button>
+<button class="border border-on-secondary-fixed text-on-surface font-label-md text-label-md px-md py-sm rounded hover:bg-surface-container-low transition-colors">Iniciar Sesión</button>
+</div>
+</div>
+<div class="relative w-full aspect-[4/3] bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-sm">
+<img alt="Dashboard Mockup" class="w-full h-full object-cover" data-alt="A clean, highly professional digital dashboard mockup rendered in light mode. The dashboard displays data visualizations, charts, and ticket classification grids. The overall aesthetic is minimalist and technical, utilizing a crisp white and light gray background. High-contrast dark gray typography ensures absolute legibility. Subtle, vibrant red accents highlight key metrics and active states, reinforcing a corporate modernism style that conveys efficiency and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEAtiKlbXUEUpW5vmOj9nBGKeILM98t9w623jyqc-kfQeHqtGFc0Y7C08_3iAjuQrgUM5GivulK637UDTd62GsR_ESgHGCMRz543okUcUjEuQszxyw0NKTUDfCW93ihEqM9gcQD0P4CEOBExovsJzk3NAolA_OhNzwxQz7JGD6NXbLatNqbk0UBJmlKdEAjhUoM9avtNeaQFOdaJqJNpHimOR0-mKdu1282DDqB0bGTALiRRpMOewsb2fPbEQ1MAHbPX3JygY_3nI"/>
+</div>
+</section>
+<!-- Video Demonstration Section -->
+<section class="max-w-[1200px] mx-auto px-margin py-xl animate-on-scroll">
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Vea SmartDesk en Acción</h2>
+<p class="font-body-md text-body-md text-secondary max-w-2xl mx-auto">Descubra cómo nuestra inteligencia artificial transforma el soporte interno en una experiencia fluida y sin fricciones.</p>
+</div>
+<div class="relative w-full aspect-video bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-sm group cursor-pointer">
+<img alt="Video Demonstration" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFK_rnHK-5yhESS9hSd9hTadXYMj7ZYYrw3vXeYOIu3QhkEdKnVTa4LxJeoPkxqbeClkVb6A767l9tJ3i7aMt-Uflz7y_CImDaJ4clfZbVLUeeIYwB3xUufChcjt6iGcYm6A3lbD_MJEJcmABz7l9MbMt6l35SHx0pP9bZd1fURzp1GtM2PebrcCpSUM1sKopdJY33s8VLjnrqm3kACXo33eM9FBtxuGrWQchTiZIn5B_xYetU38bDc2vYsu0LZ6hkDtS08Yrdr3k"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl icon-fill">play_arrow</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Section -->
+<section class="bg-surface-container-low border-y border-surface-variant animate-on-scroll">
+<div class="max-w-[1200px] mx-auto px-margin py-lg grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+<div>
+<div class="font-headline-lg text-headline-lg text-primary mb-xs">-45%</div>
+<div class="font-label-md text-label-md text-secondary uppercase tracking-wider">Tiempo de resolución</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-xs">98%</div>
+<div class="font-label-md text-label-md text-secondary uppercase tracking-wider">Tickets clasificados</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-xs">4.9/5</div>
+<div class="font-label-md text-label-md text-secondary uppercase tracking-wider">Satisfacción interna</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-primary mb-xs">70%</div>
+<div class="font-label-md text-label-md text-secondary uppercase tracking-wider">Automatización de N1</div>
+</div>
+</div>
+</section>
+<!-- Product Showcase Gallery -->
+<section class="max-w-[1200px] mx-auto px-margin py-xl animate-on-scroll">
+<div class="grid md:grid-cols-2 gap-xl items-center">
+<div class="order-2 md:order-1 relative w-full rounded-xl overflow-hidden shadow-sm">
+<img alt="Product Showcase Mobile and Tablet" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBSG8fb6UerLyzhmU6SKugdHSECIXIWuc9DI6E0vNZhRP2mEfbDEyldUTVpfxjNZ6vN0SJzyPcYcm5o5-4P0CboWYYxXfxjYXfbA5zHfCfPYK0uKNEV6yKvB_O46YUOeT0uo6Jpc_CJFE7cQcw9A1Lb5DaqJOzNhW_exQn3nYgKlduzh8Q8WxZpRkhxFq3fcH8IXMkHYr53x4kvAwFZZymzSnzqd-cqbw1A-SFFINFSnxXKVHlb9TP-5T8te4l15Mn6eBnyaB3rB4"/>
+</div>
+<div class="order-1 md:order-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">Experiencia omnicanal perfecta</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-lg">Accede a métricas clave, gestiona tickets de alta prioridad y supervisa a tu equipo desde cualquier dispositivo. SmartDesk se adapta a tu flujo de trabajo, ya sea en la oficina o en movimiento.</p>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-on-surface">App móvil nativa para iOS y Android</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-on-surface">Dashboards optimizados para tablets</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-on-surface">Sincronización en tiempo real</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Benefits Section (Bento Grid) -->
+<section class="max-w-[1200px] mx-auto px-margin py-xl animate-on-scroll">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Capacidades de SmartDesk</h2>
+<p class="font-body-md text-body-md text-secondary max-w-2xl mx-auto">Nuestra arquitectura de IA analiza el contexto, la urgencia y el historial para tomar decisiones precisas en tiempo real.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Large Card -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-surface-variant p-lg rounded-xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-outline-variant">
+<div>
+<span class="material-symbols-outlined text-primary mb-md icon-fill text-[32px]">memory</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Clasificación Automática</h3>
+<p class="font-body-md text-body-md text-secondary">La IA de SmartDesk lee y comprende el contenido de cada ticket, asignando instantáneamente la categoría correcta sin intervención humana, reduciendo el error y el tiempo de triaje a cero.</p>
+</div>
+</div>
+<!-- Small Card 1 -->
+<div class="bg-surface-container-lowest border border-surface-variant p-md rounded-xl flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-outline-variant">
+<span class="material-symbols-outlined text-on-surface mb-sm text-[24px]">priority_high</span>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-xs">Prioridad Inteligente</h3>
+<p class="font-body-sm text-body-sm text-secondary">Detección de urgencia basada en el lenguaje y el contexto del usuario.</p>
+</div>
+<!-- Small Card 2 -->
+<div class="bg-surface-container-lowest border border-surface-variant p-md rounded-xl flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-outline-variant">
+<span class="material-symbols-outlined text-on-surface mb-sm text-[24px]">lan</span>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-xs">Gestión Multi-org</h3>
+<p class="font-body-sm text-body-sm text-secondary">Administra flujos de trabajo paralelos para diferentes departamentos.</p>
+</div>
+<!-- Large Card -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-surface-variant p-lg rounded-xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-outline-variant">
+<div>
+<span class="material-symbols-outlined text-primary mb-md icon-fill text-[32px]">monitoring</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Analíticas Avanzadas</h3>
+<p class="font-body-md text-body-md text-secondary">Visualiza cuellos de botella, tiempos medios de respuesta y la eficiencia de la IA en tiempo real. Exporta reportes ejecutivos con un solo clic.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="bg-surface-container-low border-y border-surface-variant py-xl animate-on-scroll">
+<div class="max-w-[1200px] mx-auto px-margin">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Planes y Precios</h2>
+<p class="font-body-md text-body-md text-secondary max-w-2xl mx-auto">Escala el soporte de tu empresa con planes diseñados para cada etapa de crecimiento.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md lg:gap-lg items-center">
+<!-- Starter -->
+<div class="bg-surface-container-lowest border border-surface-variant p-lg rounded-xl flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-md h-full">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Starter</h3>
+<p class="font-body-sm text-secondary mb-md">Para equipos pequeños que comienzan a automatizar.</p>
+<div class="mb-lg">
+<span class="font-headline-xl text-on-surface">€49</span>
+<span class="text-secondary">/mes</span>
+</div>
+<ul class="space-y-sm mb-xl flex-grow">
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Hasta 1,000 tickets/mes</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Clasificación básica de IA</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Soporte por email</span></li>
+</ul>
+<button class="w-full border border-primary text-primary font-label-md text-label-md px-md py-sm rounded hover:bg-primary hover:text-white transition-colors mt-auto">Empezar Gratis</button>
+</div>
+<!-- Business -->
+<div class="bg-primary-container border border-primary p-lg rounded-xl flex flex-col relative transform md:-translate-y-4 shadow-lg transition-transform duration-300 hover:-translate-y-6 h-[105%] z-10">
+<div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white font-label-md px-sm py-xs rounded-full text-[10px] tracking-wider uppercase">Más Popular</div>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Business</h3>
+<p class="font-body-sm text-primary-fixed mb-md">Ideal para departamentos de IT en crecimiento.</p>
+<div class="mb-lg">
+<span class="font-headline-xl text-white">€149</span>
+<span class="text-primary-fixed">/mes</span>
+</div>
+<ul class="space-y-sm mb-xl flex-grow">
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-white text-[20px]">check</span><span class="font-body-sm text-white">Tickets ilimitados</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-white text-[20px]">check</span><span class="font-body-sm text-white">Prioridad inteligente avanzada</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-white text-[20px]">check</span><span class="font-body-sm text-white">Analíticas en tiempo real</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-white text-[20px]">check</span><span class="font-body-sm text-white">Soporte prioritario 24/7</span></li>
+</ul>
+<button class="w-full bg-white text-primary font-label-md text-label-md px-md py-sm rounded hover:bg-surface-container-lowest transition-colors mt-auto">Prueba Gratuita</button>
+</div>
+<!-- Enterprise -->
+<div class="bg-surface-container-lowest border border-surface-variant p-lg rounded-xl flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-md h-full">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Enterprise</h3>
+<p class="font-body-sm text-secondary mb-md">Soluciones a medida para grandes corporaciones.</p>
+<div class="mb-lg">
+<span class="font-headline-xl text-on-surface">A Medida</span>
+</div>
+<ul class="space-y-sm mb-xl flex-grow">
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Gestión Multi-org completa</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Modelos de IA personalizados</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">SLA garantizado del 99.9%</span></li>
+<li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check</span><span class="font-body-sm text-on-surface">Account Manager dedicado</span></li>
+</ul>
+<button class="w-full border border-on-secondary-fixed text-on-surface font-label-md text-label-md px-md py-sm rounded hover:bg-surface-container-low transition-colors mt-auto">Contactar Ventas</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim text-primary dark:text-primary-fixed font-body-sm text-body-sm w-full border-t border-surface-variant flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin py-lg max-w-[1200px] mx-auto w-full gap-md">
+<div class="flex items-center gap-sm">
+<img alt="SmartDesk Logo" class="h-6 w-6 object-contain grayscale opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArNB7bquVPrJ4eI3TvbuaKekE__aGE_DoiCri6e__Zreg5konNIiiIfp4eY6RHRWwAWSLb3BVctUmu_U7C6T_FUpZqC0NWTxLJSuxwPuR1ilFtlHp7TVCJkno4CKw_hxselbSOTgCw6m-n5YX8UiTOd4VHfscCsg1lNyK0Pm-JG0IaA9v-4n_vs6xyyTp3_0M0lLGMpEuSQ-dsY_Xm_Lx_2w9DL_Hi4h2ENxCKPu_Sa9XPy6TLqUmU4UqMoWqJMxfk0fdmW7mWzgA"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">SmartDesk</span>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="text-secondary hover:text-primary transition-opacity hover:opacity-80" href="#">Términos de servicio</a>
+<a class="text-secondary hover:text-primary transition-opacity hover:opacity-80" href="#">Política de privacidad</a>
+<a class="text-secondary hover:text-primary transition-opacity hover:opacity-80" href="#">Contacto</a>
+<a class="text-secondary hover:text-primary transition-opacity hover:opacity-80" href="#">Blog</a>
+</div>
+<div class="text-secondary">
+                © 2024 SmartDesk. Todos los derechos reservados.
+            </div>
+</div>
+</footer>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>
