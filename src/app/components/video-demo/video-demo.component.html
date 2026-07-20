@@ -2,32 +2,42 @@
   <div class="text-center mb-lg">
     <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Vea SmartDesk en Acción</h2>
     <p class="font-body-md text-body-md text-secondary max-w-2xl mx-auto">
-      Descubra cómo nuestra inteligencia artificial transforma el soporte interno en una experiencia fluida y sin fricciones.
+      Descubra cómo nuestra inteligencia artificial transforma el soporte interno en una experiencia fluida y sin
+      fricciones.
     </p>
   </div>
-  
-  <div class="relative w-full aspect-video bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-xl group">
+
+  <div
+    class="relative w-full aspect-video bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-xl group">
     <!-- Carousel Track -->
-    <div class="flex transition-transform duration-500 ease-in-out h-full" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+    <div class="flex transition-transform duration-500 ease-in-out h-full"
+      [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
       @for (video of videos; track $index) {
-        <div class="w-full flex-shrink-0 h-full">
-          <iframe [src]="video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full h-full"></iframe>
-        </div>
+      <div class="w-full flex-shrink-0 h-full">
+        <iframe #videoPlayer [src]="video" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen class="w-full h-full"></iframe>
+      </div>
       }
     </div>
 
     <!-- Navigation Buttons -->
-    <button class="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-primary rounded-full flex items-center justify-center shadow-lg transition-colors z-10 opacity-0 group-hover:opacity-100" (click)="prev()">
+    <button
+      class="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-primary rounded-full flex items-center justify-center shadow-lg transition-colors z-10 opacity-0 group-hover:opacity-100"
+      (click)="prev()">
       <svg lucideChevronLeft></svg>
     </button>
-    <button class="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-primary rounded-full flex items-center justify-center shadow-lg transition-colors z-10 opacity-0 group-hover:opacity-100" (click)="next()">
+    <button
+      class="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-primary rounded-full flex items-center justify-center shadow-lg transition-colors z-10 opacity-0 group-hover:opacity-100"
+      (click)="next()">
       <svg lucideChevronRight></svg>
     </button>
 
     <!-- Indicators -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
       @for (video of videos; track $index) {
-        <button class="w-2.5 h-2.5 rounded-full transition-colors" [class.bg-primary]="currentIndex === $index" [class.bg-white]="currentIndex !== $index" (click)="currentIndex = $index"></button>
+      <button class="w-2.5 h-2.5 rounded-full transition-colors" [class.bg-primary]="currentIndex === $index"
+        [class.bg-white]="currentIndex !== $index" (click)="goToSlide($index)"></button>
       }
     </div>
   </div>

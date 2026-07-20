@@ -1,40 +1,51 @@
-<section id="faq" class="max-w-[800px] mx-auto px-margin py-xl animate-on-scroll is-visible">
-  <div class="text-center mb-xl">
-    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Preguntas Frecuentes</h2>
+<section id="faq" class="max-w-[800px] mx-auto px-margin py-24 animate-on-scroll is-visible relative z-10">
+  <div class="text-center mb-16">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-bold tracking-tight">Preguntas Frecuentes</h2>
   </div>
-  <div class="flex flex-col gap-sm">
-    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(0)">
+  <div class="flex flex-col gap-4">
+    <div class="glass border border-surface-variant/50 p-6 rounded-2xl cursor-pointer bg-surface/30 backdrop-blur-md hover:bg-surface/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-surface-variant transition-all duration-300 group"
+      (click)="toggle(0)">
       <div class="flex justify-between items-center">
-        <h3 class="font-body-lg text-on-surface font-bold">¿Cómo funciona la IA de SmartDesk?</h3>
-        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 0"></svg>
+        <h3 class="font-body-lg text-[18px] text-on-surface font-bold group-hover:text-primary transition-colors">¿Cómo funciona la IA de SmartDesk?</h3>
+        <div class="w-8 h-8 rounded-full bg-surface-variant/30 flex items-center justify-center transition-transform duration-300 group-hover:bg-primary/10 group-hover:text-primary" [class.rotate-180]="openIndex === 0">
+          <svg lucideChevronDown class="w-5 h-5 text-secondary group-hover:text-primary transition-colors"></svg>
+        </div>
       </div>
       @if (openIndex === 0) {
-      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
-        Nuestra IA analiza el lenguaje natural de cada ticket para determinar la urgencia y el departamento adecuado en tiempo real.
+      <div class="mt-4 pt-4 border-t border-surface-variant/30 font-body-md text-[16px] text-secondary leading-relaxed animate-fade-in-down">
+        Nuestra IA analiza el lenguaje natural de cada ticket para determinar la urgencia y el departamento adecuado en
+        tiempo real.
       </div>
       }
     </div>
-    
-    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(1)">
+
+    <div class="glass border border-surface-variant/50 p-6 rounded-2xl cursor-pointer bg-surface/30 backdrop-blur-md hover:bg-surface/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-surface-variant transition-all duration-300 group"
+      (click)="toggle(1)">
       <div class="flex justify-between items-center">
-        <h3 class="font-body-lg text-on-surface font-bold">¿SmartDesk es multiempresa?</h3>
-        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 1"></svg>
+        <h3 class="font-body-lg text-[18px] text-on-surface font-bold group-hover:text-primary transition-colors">¿SmartDesk es multiempresa?</h3>
+        <div class="w-8 h-8 rounded-full bg-surface-variant/30 flex items-center justify-center transition-transform duration-300 group-hover:bg-primary/10 group-hover:text-primary" [class.rotate-180]="openIndex === 1">
+          <svg lucideChevronDown class="w-5 h-5 text-secondary group-hover:text-primary transition-colors"></svg>
+        </div>
       </div>
       @if (openIndex === 1) {
-      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
+      <div class="mt-4 pt-4 border-t border-surface-variant/30 font-body-md text-[16px] text-secondary leading-relaxed animate-fade-in-down">
         Sí, puedes gestionar múltiples departamentos, sucursales u organizaciones bajo un mismo panel administrativo.
       </div>
       }
     </div>
-    
-    <div class="glass p-md rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group" (click)="toggle(2)">
+
+    <div class="glass border border-surface-variant/50 p-6 rounded-2xl cursor-pointer bg-surface/30 backdrop-blur-md hover:bg-surface/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-surface-variant transition-all duration-300 group"
+      (click)="toggle(2)">
       <div class="flex justify-between items-center">
-        <h3 class="font-body-lg text-on-surface font-bold">¿Puedo personalizar áreas?</h3>
-        <svg lucideChevronDown class="text-secondary transition-transform duration-300" [class.rotate-180]="openIndex === 2"></svg>
+        <h3 class="font-body-lg text-[18px] text-on-surface font-bold group-hover:text-primary transition-colors">¿Puedo personalizar áreas?</h3>
+        <div class="w-8 h-8 rounded-full bg-surface-variant/30 flex items-center justify-center transition-transform duration-300 group-hover:bg-primary/10 group-hover:text-primary" [class.rotate-180]="openIndex === 2">
+          <svg lucideChevronDown class="w-5 h-5 text-secondary group-hover:text-primary transition-colors"></svg>
+        </div>
       </div>
       @if (openIndex === 2) {
-      <div class="mt-sm font-body-md text-secondary animate-fade-in-down">
-        Totalmente. Puedes definir roles, permisos y flujos personalizados según el tipo de ticket o la especialidad de tus agentes.
+      <div class="mt-4 pt-4 border-t border-surface-variant/30 font-body-md text-[16px] text-secondary leading-relaxed animate-fade-in-down">
+        Totalmente. Puedes definir roles, permisos y flujos personalizados según el tipo de ticket o la especialidad de
+        tus agentes.
       </div>
       }
     </div>

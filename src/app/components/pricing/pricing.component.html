@@ -1,68 +1,72 @@
-<section id="pricing" class="border-y border-surface-variant py-xl animate-on-scroll is-visible bg-background relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
-
+<section id="pricing" class="py-24 animate-on-scroll is-visible relative overflow-hidden z-10 border-t border-surface-variant/30 mt-12">
   <div class="max-w-[1200px] mx-auto px-margin relative z-10">
-    <div class="text-center mb-xl">
-      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Planes y Precios</h2>
-      <p class="font-body-md text-body-md text-secondary max-w-2xl mx-auto">Escala el soporte de tu empresa con planes diseñados para cada etapa de crecimiento.</p>
+    <div class="text-center mb-16">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-bold tracking-tight">Planes y Precios</h2>
+      <p class="font-body-lg text-[18px] text-secondary max-w-2xl mx-auto leading-relaxed">Escala el soporte de tu empresa con planes diseñados para cada etapa de crecimiento.</p>
       
-      <div class="mt-lg flex justify-center items-center gap-sm">
+      <div class="mt-10 flex justify-center items-center gap-4">
         <span class="font-label-md transition-colors" [class.text-on-surface]="!isAnnual" [class.text-secondary]="isAnnual">Mensual</span>
-        <button class="w-12 h-6 rounded-full relative transition-colors cursor-pointer hover:opacity-90"
+        <button class="w-14 h-7 rounded-full relative transition-colors cursor-pointer hover:opacity-90 shadow-inner"
                 [class.bg-primary]="isAnnual"
                 [class.bg-surface-variant]="!isAnnual"
                 (click)="toggleBilling()">
-          <span class="w-4 h-4 bg-white rounded-full absolute top-1 transition-all duration-300"
-                [class.left-7]="isAnnual"
+          <span class="w-5 h-5 bg-white rounded-full absolute top-1 transition-all duration-300 shadow-sm"
+                [class.left-8]="isAnnual"
                 [class.left-1]="!isAnnual"></span>
         </button>
         <span class="font-label-md transition-colors" [class.text-on-surface]="isAnnual" [class.text-secondary]="!isAnnual">Anual (Ahorra 20%)</span>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-md lg:gap-lg items-center">
-      <div class="glass p-lg rounded-xl flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-md h-full">
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Starter</h3>
-        <p class="font-body-sm text-secondary mb-md">Para equipos pequeños que comienzan a automatizar.</p>
-        <div class="mb-lg">
-          <span class="font-headline-xl text-on-surface">{{ isAnnual ? '$39' : '$49' }}</span>
-          <span class="text-secondary">/mes</span>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-12">
+      <!-- Starter Plan -->
+      <div class="glass border border-surface-variant/60 p-10 rounded-3xl flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgb(0,0,0,0.06)] h-full relative bg-surface/30 backdrop-blur-md group">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 font-bold">Starter</h3>
+        <p class="font-body-sm text-[15px] text-secondary mb-6 leading-relaxed">Para equipos pequeños que comienzan a automatizar.</p>
+        <div class="mb-10">
+          <span class="font-headline-xl text-on-surface font-black tracking-tight">{{ isAnnual ? '$39' : '$49' }}</span>
+          <span class="text-secondary font-medium">/mes</span>
         </div>
-        <ul class="space-y-sm mb-xl flex-grow">
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Hasta 1,000 tickets/mes</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Clasificación básica de IA</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Soporte por email</span></li>
+        <ul class="space-y-4 mb-10 flex-grow">
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Hasta 1,000 tickets/mes</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Clasificación básica de IA</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Soporte por email</span></li>
         </ul>
-        <button class="w-full border border-primary text-primary font-label-md text-label-md px-md py-sm rounded-full hover:bg-primary hover:text-white transition-colors mt-auto">Empezar Gratis</button>
+        <button class="w-full border border-surface-variant text-on-surface font-label-md text-[16px] px-6 py-3.5 rounded-full hover:bg-surface-variant transition-all mt-auto font-bold active:scale-95 duration-200">Empezar Gratis</button>
       </div>
-      <div class="bg-primary-container border border-primary p-lg rounded-xl flex flex-col relative transform md:-translate-y-4 shadow-[0_0_40px_rgba(249,115,22,0.2)] transition-all duration-300 hover:-translate-y-6 hover:shadow-[0_0_60px_rgba(249,115,22,0.3)] h-[105%] z-10">
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white font-label-md px-sm py-xs rounded-full text-[10px] tracking-wider uppercase shadow-md">Más Popular</div>
-        <h3 class="font-headline-md text-headline-md text-white mb-xs">Business</h3>
-        <p class="font-body-sm text-primary-fixed mb-md">Ideal para departamentos de IT en crecimiento.</p>
-        <div class="mb-lg">
-          <span class="font-headline-xl text-white">{{ isAnnual ? '$119' : '$149' }}</span>
-          <span class="text-primary-fixed">/mes</span>
+      
+      <!-- Business Plan (Popular) -->
+      <div class="bg-surface border border-surface-variant/50 border-t-4 border-t-primary p-12 rounded-3xl flex flex-col relative transform md:-translate-y-4 shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-6 hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] h-[105%] z-20 group">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white font-label-sm px-4 py-1.5 rounded-full text-[12px] font-bold tracking-widest uppercase shadow-md">Más Popular</div>
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 font-bold">Business</h3>
+        <p class="font-body-sm text-[15px] text-secondary mb-6 leading-relaxed">Ideal para departamentos de IT en crecimiento.</p>
+        <div class="mb-10">
+          <span class="font-headline-xl text-primary font-black tracking-tight">{{ isAnnual ? '$119' : '$149' }}</span>
+          <span class="text-secondary font-medium">/mes</span>
         </div>
-        <ul class="space-y-sm mb-xl flex-grow">
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-white w-5 h-5"></svg><span class="font-body-sm text-white">Tickets ilimitados</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-white w-5 h-5"></svg><span class="font-body-sm text-white">Prioridad inteligente avanzada</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-white w-5 h-5"></svg><span class="font-body-sm text-white">Analíticas en tiempo real</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-white w-5 h-5"></svg><span class="font-body-sm text-white">Soporte prioritario 24/7</span></li>
+        <ul class="space-y-4 mb-10 flex-grow">
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface font-medium">Tickets ilimitados</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface font-medium">Prioridad inteligente avanzada</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface font-medium">Analíticas en tiempo real</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface font-medium">Soporte prioritario 24/7</span></li>
         </ul>
-        <button class="w-full bg-white text-primary font-label-md text-label-md px-md py-sm rounded-full hover:bg-surface-container-lowest transition-colors mt-auto shadow-sm">Prueba Gratuita</button>
+        <button class="w-full bg-primary text-white font-label-md text-[16px] px-6 py-3.5 rounded-full hover:bg-primary/90 transition-all mt-auto font-bold shadow-sm active:scale-95 duration-200">Prueba Gratuita</button>
       </div>
-      <div class="glass p-lg rounded-xl flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-md h-full">
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Enterprise</h3>
-        <p class="font-body-sm text-secondary mb-md">Soluciones a medida para grandes corporaciones.</p>
-        <div class="mb-lg">
-          <span class="font-headline-xl text-on-surface">A Medida</span>
+
+      <!-- Enterprise Plan -->
+      <div class="glass border border-surface-variant/60 p-10 rounded-3xl flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgb(0,0,0,0.06)] h-full relative bg-surface/30 backdrop-blur-md group">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 font-bold">Enterprise</h3>
+        <p class="font-body-sm text-[15px] text-secondary mb-6 leading-relaxed">Soluciones a medida para grandes corporaciones.</p>
+        <div class="mb-10">
+          <span class="font-headline-xl text-on-surface font-black tracking-tight">A Medida</span>
         </div>
-        <ul class="space-y-sm mb-xl flex-grow">
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Gestión Multi-org completa</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Modelos de IA personalizados</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">SLA garantizado del 99.9%</span></li>
-          <li class="flex items-start gap-sm"><svg lucideCheck class="text-primary w-5 h-5"></svg><span class="font-body-sm text-on-surface">Account Manager dedicado</span></li>
+        <ul class="space-y-4 mb-10 flex-grow">
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Gestión Multi-org completa</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Modelos de IA personalizados</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">SLA garantizado del 99.9%</span></li>
+          <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary"><svg lucideCheck class="w-4 h-4"></svg></div><span class="font-body-md text-[15px] text-on-surface">Account Manager dedicado</span></li>
         </ul>
-        <button class="w-full border border-outline text-on-surface font-label-md text-label-md px-md py-sm rounded-full hover:bg-surface-container-low transition-colors mt-auto">Contactar Ventas</button>
+        <button class="w-full border border-surface-variant text-on-surface font-label-md text-[16px] px-6 py-3.5 rounded-full hover:bg-surface-variant transition-all mt-auto font-bold active:scale-95 duration-200">Contactar Ventas</button>
       </div>
     </div>
   </div>
